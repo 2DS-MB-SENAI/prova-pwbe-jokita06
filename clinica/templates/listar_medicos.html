@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Médicos</title>
+    <style>
+        .filtro {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 5px;
+        }
+        .todos {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Médicos da Clínica</h1>
+
+    <div class="filtro">
+        <form method="get">
+            <label for="especialidade">Filtrar por especialidade:</label>
+            <select name="especialidade" id="especialidade">
+                <option value="">Todos</option>
+                {% for sigla, nome in especialidades.items %}
+                    <option value="{{ sigla }}" {% if especialidade_selecionada == sigla %}selected{% endif %}>
+                        {{ nome }}
+                    </option>
+                {% endfor %}
+            </select>
+            <button type="submit">Filtrar</button>
+            <a href="?especialidade=" class="todos">Limpar filtro</a>
+        </form>
+    </div>
+
+    <ul>
+        {% for medico in medicos %}
+            <li>
+                <strong>{{ medico.nome }}</strong> - 
+                {{ medico.get_especialidade_display }} - 
+                CRM: {% if medico.crm|length == 7 %}{{ medico.crm|slice:":5" }}/{{ medico.crm|slice:"5:" }}{% else %}{{ medico.crm }}{% endif %}
+            </li>
+        {% empty %}
+            <li>Nenhum médico encontrado</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'criar_consulta' %}">Agendar consulta</a> |
+    <a href="{% url 'base' %}">Voltar ao início</a>
+</body>
+</html>

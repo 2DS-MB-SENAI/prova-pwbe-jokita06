@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes da Consulta</title>
+</head>
+<body>
+    <h1>Detalhes da Consulta</h1>
+    <ul>
+        <li>Paciente: {{ consulta.paciente }}</li>
+        <li>Data: {{ consulta.data }}</li>
+        <li>Médico: {{ consulta.medico.nome }}</li>
+        <li>Status: {{ consulta.get_status_display }}</li>
+    </ul>
+    <a href="{% url 'criar_consulta' %}">Agendar nova consulta</a>
+</body>
+</html>

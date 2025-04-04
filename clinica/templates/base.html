@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica Médica</title>
+</head>
+<body>
+    <h1>Bem-Vindo(a) a nossa clínica</h1>
+    <a href="{% url 'listar_medicos' %}">
+        <button>Médicos</button>
+    </a>
+
+    <a href="{% url 'criar_consulta' %}">
+        <button>Agendar consulta</button>
+    </a>
+</body>
+</html>
